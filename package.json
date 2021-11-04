@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"balse": "git rm git rm -r --cached --ignore-unmatch ./src/libs/ore-three-ts && git rm .gitmodules  && rm -rf ./src/libs/ore-three-ts/.git"
+		"balse": "git rm git rm -r --cached --ignore-unmatch ./src/libs/ore-three-ts && git rm .gitmodules  && rm -rf ./src/libs/ore-three-ts/.git && rm -r ./src/libs/ore-three-ts/blend-files && rm -r ./src/libs/ore-three-ts/build && rm -r ./src/libs/ore-three-ts/config && rm -r ./src/libs/ore-three-ts/docs && rm -r ./src/libs/ore-three-ts/docs_src && rm -r ./src/libs/ore-three-ts/examples && rm -r ./src/libs/ore-three-ts/types"
 	},
 	"dependencies": {
 		"@types/react": "^17.0.34",
