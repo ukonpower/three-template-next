@@ -10,12 +10,14 @@
 		"balse": "git rm git rm -r --cached --ignore-unmatch ./src/libs/ore-three-ts && git rm .gitmodules  && rm -rf ./src/libs/ore-three-ts/.git && rm -r ./src/libs/ore-three-ts/blend-files && rm -r ./src/libs/ore-three-ts/build && rm -r ./src/libs/ore-three-ts/config && rm -r ./src/libs/ore-three-ts/docs && rm -r ./src/libs/ore-three-ts/docs_src && rm -r ./src/libs/ore-three-ts/examples && rm -r ./src/libs/ore-three-ts/types && rm -r ./src/libs/ore-three-ts/screenshot && rm ./src/libs/ore-three-ts/.eslintrc && rm ./src/libs/ore-three-ts/.gitignore && rm ./src/libs/ore-three-ts/gulpfile.js && rm ./src/libs/ore-three-ts/LICENSE && rm ./src/libs/ore-three-ts/ore-three-ts.code-workspace && rm ./src/libs/ore-three-ts/package.json && rm ./src/libs/ore-three-ts/package-lock.json && rm ./src/libs/ore-three-ts/README.md && rm ./src/libs/ore-three-ts/tsconfig.json && rm ./src/libs/ore-three-ts/info.json"
 	},
 	"dependencies": {
+		"@reduxjs/toolkit": "^1.6.2",
 		"@types/react": "^17.0.34",
 		"@types/three": "^0.133.1",
 		"lethargy": "^1.0.9",
 		"next": "11.1.2",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
+		"react-redux": "^7.2.6",
 		"three": "^0.133.1",
 		"to-px": "^1.1.0",
 		"wolfy87-eventemitter": "^5.2.9"

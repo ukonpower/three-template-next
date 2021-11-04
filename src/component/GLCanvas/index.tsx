@@ -1,4 +1,5 @@
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { GlobalContext } from '~/contexts/globalContext'
 
 import styles from './glCanvas.module.scss'
