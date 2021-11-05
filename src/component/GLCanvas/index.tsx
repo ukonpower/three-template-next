@@ -10,6 +10,9 @@ const useGLCanvas = () => {
 
 	const appendCanvas = (renderer: THREE.WebGLRenderer) => {
 		if (wrapperElmRef.current) {
+			const canvas = wrapperElmRef.current.querySelectorAll('canvas')
+			canvas.forEach(item => item.remove())
+
 			wrapperElmRef.current.appendChild(renderer.domElement)
 		}
 	}

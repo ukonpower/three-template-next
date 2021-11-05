@@ -5,6 +5,9 @@ import { RenderPipeline } from './RenderPipeline';
 import { CameraController } from './CameraController';
 import { AssetManager } from './GlobalManager/AssetManager';
 
+import fragVert from './shaders/frag.vs';
+import fragFrag from './shaders/frag.fs';
+
 export class MainScene extends ORE.BaseLayer {
 
 	private gManager?: GlobalManager;
@@ -65,6 +68,12 @@ export class MainScene extends ORE.BaseLayer {
 
 	public animate( deltaTime: number ) {
 
+		if( this.gManager ) {
+
+			this.gManager.animator.update( deltaTime );
+			
+		}
+		
 		if ( this.cameraController ) {
 
 			this.cameraController.update( deltaTime );
