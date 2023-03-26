@@ -1,4 +1,4 @@
-import * as ORE from '@ore-three-ts';
+import * as ORE from '@ore-three';
 import { MainScene } from './MainScene';
 
 export class GLController {
@@ -12,17 +12,17 @@ export class GLController {
 
 		this.canvas = document.querySelector("#canvas");
 
-		this.scene = new MainScene();
+		this.scene = new MainScene({
+			name: 'Main',
+			canvas: this.canvas || undefined
+		});
 
 		/*------------------------
 			init ORE
 		------------------------*/
 
 		this.controller = new ORE.Controller();
-		this.controller.addLayer(this.scene, {
-			name: 'Main',
-			canvas: this.canvas || undefined
-		});
+		this.controller.addLayer(this.scene);
 
 	}
 

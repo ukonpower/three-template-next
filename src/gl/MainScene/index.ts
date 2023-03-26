@@ -1,32 +1,30 @@
-import * as ORE from '@ore-three-ts';
-import * as THREE from 'three';
+import * as ORE from '@ore-three';
 import { GlobalManager } from './GlobalManager';
 import { RenderPipeline } from './RenderPipeline';
 import { CameraController } from './CameraController';
 import { AssetManager } from './GlobalManager/AssetManager';
-
-import fragVert from './shaders/frag.vs';
-import fragFrag from './shaders/frag.fs';
-
+import { World } from './World';
 export class MainScene extends ORE.BaseLayer {
 
-	private gManager?: GlobalManager;
-	private renderPipeline?: RenderPipeline;
+	private gManager: GlobalManager;
+	private renderPipeline: RenderPipeline;
+
 	private cameraController?: CameraController;
+	private world?: World;
 
-	constructor() {
+	constructor( param: ORE.LayerParam ) {
 
-		super();
+		super( param );
 
 		this.commonUniforms = ORE.UniformsLib.mergeUniforms( this.commonUniforms, {} );
 
-	}
+		/*-------------------------------
+			Gmanager
+		-------------------------------*/
 
-	onBind( info: ORE.LayerInfo ) {
+		this.gManager = new GlobalManager();
 
-		super.onBind( info );
-
-		this.gManager = new GlobalManager( {
+		this.gManager.assetManager.load( {
 			assets: [
 				{ name: 'scene', path: '/scene/scene.glb', type: 'gltf' }
 			]
@@ -34,7 +32,7 @@ export class MainScene extends ORE.BaseLayer {
 
 		this.gManager.assetManager.addEventListener( 'loadMustAssets', ( e ) => {
 
-			const gltf = ( e.target as AssetManager ).getGltf( 'scene' );
+			let gltf = ( e.target as AssetManager ).getGltf( 'scene' );
 
 			if ( gltf ) {
 
@@ -47,44 +45,64 @@ export class MainScene extends ORE.BaseLayer {
 
 		} );
 
+		/*-------------------------------
+			RenderPipeline
+		-------------------------------*/
+
+		this.renderPipeline = new RenderPipeline( this.renderer, this.commonUniforms );
+
+	}
+
+	onUnbind() {
+
+		super.onUnbind();
+
+		if ( this.world ) {
+
+			this.world.dispose();
+
+		}
+
 	}
 
 	private initScene() {
 
-		if ( this.renderer ) {
-
-			this.renderPipeline = new RenderPipeline( this.renderer, this.commonUniforms );
-
-		}
+		/*-------------------------------
+			CameraController
+		-------------------------------*/
 
 		this.cameraController = new CameraController( this.camera, this.scene.getObjectByName( 'CameraData' ) );
 
-		const light = new THREE.DirectionalLight();
-		light.intensity = 0.8;
-		light.position.set( 1, 2, 1 );
-		this.scene.add( light );
+		/*-------------------------------
+			World
+		-------------------------------*/
+
+		this.world = new World( this.scene, this.commonUniforms );
+		this.scene.add( this.world );
 
 	}
 
 	public animate( deltaTime: number ) {
 
-		if( this.gManager ) {
+		if ( this.gManager ) {
 
-			this.gManager.animator.update( deltaTime );
-			
+			this.gManager.update( deltaTime );
+
 		}
-		
+
 		if ( this.cameraController ) {
 
 			this.cameraController.update( deltaTime );
 
 		}
 
-		if ( this.renderPipeline ) {
+		if ( this.world ) {
 
-			this.renderPipeline.render( this.scene, this.camera );
+			this.world.update( deltaTime );
 
 		}
+
+		this.renderPipeline.render( this.scene, this.camera );
 
 	}
 
@@ -92,11 +110,19 @@ export class MainScene extends ORE.BaseLayer {
 
 		super.onResize();
 
-		if ( this.renderPipeline ) {
+		if ( this.cameraController ) {
 
-			this.renderPipeline.resize( this.info.size.canvasPixelSize );
+			this.cameraController.resize( this.info );
 
 		}
+
+		if ( this.world ) {
+
+			this.world.resize( this.info );
+
+		}
+
+		this.renderPipeline.resize( this.info );
 
 	}
 
@@ -104,10 +130,22 @@ export class MainScene extends ORE.BaseLayer {
 
 		if ( this.cameraController ) {
 
-			this.cameraController.updateCursor( args.normalizedPosition );
+			this.cameraController.updateCursor( args.screenPosition );
 
 		}
 
+	}
+
+	public onTouchStart( args: ORE.TouchEventArgs ) {
+	}
+
+	public onTouchMove( args: ORE.TouchEventArgs ) {
+	}
+
+	public onTouchEnd( args: ORE.TouchEventArgs ) {
+	}
+
+	public onWheelOptimized( event: WheelEvent ) {
 	}
 
 }
