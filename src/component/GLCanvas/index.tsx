@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
+import styles from './glCanvas.module.scss'
 import { GlobalContext } from '~/contexts/globalContext'
 
-import styles from './glCanvas.module.scss'
 
 const useGLCanvas = () => {
 	const scene = useContext(GlobalContext).scene

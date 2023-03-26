@@ -1,5 +1,5 @@
-import * as ORE from '@ore-three';
 import { MainScene } from './MainScene';
+import * as ORE from '@ore-three';
 
 export class GLController {
 

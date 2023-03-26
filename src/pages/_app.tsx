@@ -3,13 +3,13 @@ import type { AppProps } from 'next/app'
 
 import React, { useEffect, useState } from 'react'
 
+import { Provider, useSelector } from 'react-redux'
 import EventEmitter from 'wolfy87-eventemitter'
 
-import { GlobalContext } from '~/contexts/globalContext'
-import { GLCanvas } from '~/component/GLCanvas'
 import { GLController } from '../gl/GLController'
 import { MainScene } from '../gl/MainScene'
-import { Provider, useSelector } from 'react-redux'
+import { GLCanvas } from '~/component/GLCanvas'
+import { GlobalContext } from '~/contexts/globalContext'
 import store from '~/stores'
 
 const useApp = () => {

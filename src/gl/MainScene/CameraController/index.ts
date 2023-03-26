@@ -17,13 +17,13 @@ export class CameraController {
 
 		this.camera = camera;
 
-		let cameraModel = data && data.getObjectByName( 'Camera' ) as THREE.PerspectiveCamera;
+		const cameraModel = data && data.getObjectByName( 'Camera' ) as THREE.PerspectiveCamera;
 		this.cameraBasePos = cameraModel ? cameraModel.getWorldPosition( new THREE.Vector3() ) : new THREE.Vector3( 0, 1, 5 );
 
-		let cameraTarget = data && data.getObjectByName( 'CameraTarget' );
+		const cameraTarget = data && data.getObjectByName( 'CameraTarget' );
 		this.cameraTargetPos = cameraTarget ? cameraTarget.getWorldPosition( new THREE.Vector3() ) : new THREE.Vector3( 0, 1, 0 );
 
-		let baseCamera = data && data.getObjectByName( 'Camera' );
+		const baseCamera = data && data.getObjectByName( 'Camera' );
 		this.baseCamera = baseCamera ? ( baseCamera.children[ 0 ] as THREE.PerspectiveCamera ) : camera.clone() as THREE.PerspectiveCamera;
 
 		this.cursorPos = new THREE.Vector2();
@@ -44,7 +44,7 @@ export class CameraController {
 
 		deltaTime = Math.min( 0.3, deltaTime );
 
-		let diff = this.cursorPos.clone().sub( this.cursorPosDelay ).multiplyScalar( deltaTime * 1.0 );
+		const diff = this.cursorPos.clone().sub( this.cursorPosDelay ).multiplyScalar( deltaTime * 1.0 );
 		diff.multiply( diff.clone().addScalar( 1.0 ) );
 		this.cursorPosDelay.add( diff );
 
