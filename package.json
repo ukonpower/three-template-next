@@ -11,8 +11,6 @@
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.9.3",
 		"@tweakpane/core": "^1.1.6",
-		"@types/react": "^18.0.29",
-		"@types/three": "^0.149.0",
 		"lethargy": "^1.0.9",
 		"next": "13.2.4",
 		"react-redux": "^8.0.5",
@@ -22,6 +20,8 @@
 		"wolfy87-eventemitter": "^5.2.9"
 	},
 	"devDependencies": {
+		"@types/react": "^18.0.29",
+		"@types/three": "^0.149.0",
 		"@typescript-eslint/eslint-plugin": "^5.56.0",
 		"@typescript-eslint/parser": "^5.56.0",
 		"eslint": "8.36.0",
