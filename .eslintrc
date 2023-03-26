@@ -14,5 +14,18 @@
 			}
 		],
 		"import/named": "off"
-	}
+	},
+	"overrides": [
+		{
+			"files": [
+				"*.ts"
+			],
+			"extends": [
+				"mdcs"
+			],
+			"rules": {
+				"no-unused-vars": "off"
+			}
+		}
+	]
 }

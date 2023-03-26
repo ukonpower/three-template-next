@@ -21,7 +21,7 @@ export declare interface AssetManagerParams {
 export class AssetManager extends THREE.EventDispatcher {
 
 	private textures: {[key:string]: AssetManagerTexture };
-	private gltfs: {[key:string]: GLTF }
+	private gltfs: {[key:string]: GLTF };
 
 	private preLoadManager: THREE.LoadingManager;
 	private mustLoadManager: THREE.LoadingManager;

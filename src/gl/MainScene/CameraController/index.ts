@@ -3,7 +3,7 @@ import * as ORE from '@ore-three';
 
 export class CameraController {
 
-	private camera: THREE.PerspectiveCamera
+	private camera: THREE.PerspectiveCamera;
 	private cameraBasePos: THREE.Vector3;
 	private cameraTargetPos: THREE.Vector3;
 

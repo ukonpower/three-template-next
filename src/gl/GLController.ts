@@ -10,25 +10,25 @@ export class GLController {
 
 	constructor() {
 
-		this.canvas = document.querySelector("#canvas");
+		this.canvas = document.querySelector( "#canvas" );
 
-		this.scene = new MainScene({
+		this.scene = new MainScene( {
 			name: 'Main',
 			canvas: this.canvas || undefined
-		});
+		} );
 
 		/*------------------------
 			init ORE
 		------------------------*/
 
 		this.controller = new ORE.Controller();
-		this.controller.addLayer(this.scene);
+		this.controller.addLayer( this.scene );
 
 	}
 
 	public dispose() {
 
-		if (this.controller) {
+		if ( this.controller ) {
 
 			this.controller.dispose();
 
