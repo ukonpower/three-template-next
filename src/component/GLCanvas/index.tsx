@@ -1,33 +1,19 @@
-import { useContext, useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useContext, useEffect, useRef } from 'react'
 import styles from './glCanvas.module.scss'
-import { GlobalContext } from '~/contexts/globalContext'
-
+import { GLContext } from '~/contexts/glContext'
 
 const useGLCanvas = () => {
-	const scene = useContext(GlobalContext).scene
+	const controller = useContext(GLContext).controller
 	const wrapperElmRef = useRef<HTMLDivElement | null>(null)
 
-	const appendCanvas = (renderer: THREE.WebGLRenderer) => {
-		if (wrapperElmRef.current) {
+	useEffect(() => {
+		if (controller && wrapperElmRef.current) {
 			const canvas = wrapperElmRef.current.querySelectorAll('canvas')
 			canvas.forEach(item => item.remove())
-
-			wrapperElmRef.current.appendChild(renderer.domElement)
+			wrapperElmRef.current.appendChild(controller.canvas)
+			controller.setPointerElement(controller.canvas)
 		}
-	}
-
-	useEffect(() => {
-		if (scene && wrapperElmRef.current) {
-			if (scene.renderer) {
-				appendCanvas(scene.renderer)
-			} else {
-				scene.addEventListener('createdRenderer', e => {
-					appendCanvas(e.renderer)
-				})
-			}
-		}
-	}, [wrapperElmRef, scene])
+	}, [wrapperElmRef, controller])
 
 	return {
 		wrapperElmRef,

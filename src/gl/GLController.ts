@@ -3,26 +3,32 @@ import * as ORE from '@ore-three';
 
 export class GLController {
 
+	public canvas: HTMLCanvasElement;
+
+	public controller: ORE.Controller;
 	public scene: MainScene;
 
-	private canvas: HTMLCanvasElement | null;
-	private controller?: ORE.Controller;
-
 	constructor() {
-
-		this.canvas = document.querySelector( "#canvas" );
-
-		this.scene = new MainScene( {
-			name: 'Main',
-			canvas: this.canvas || undefined
-		} );
 
 		/*------------------------
 			init ORE
 		------------------------*/
 
 		this.controller = new ORE.Controller();
+
+		this.scene = new MainScene( {
+			name: 'Main',
+		} );
+
+		this.canvas = this.scene.renderer.domElement;
+
 		this.controller.addLayer( this.scene );
+
+	}
+
+	public setPointerElement( elm: HTMLElement ) {
+
+		this.controller.setPointerEventElement( elm );
 
 	}
 
